@@ -20,7 +20,7 @@ function getTotal() {
     total.innerHTML = result;
     total.style.backgroundColor = '#098b00';
   } else {
-    total.style.backgroundColor = '#ff6600';
+    total.style.backgroundColor = '#ffaa00';
     total.innerHTML = '';
   }
 }
@@ -38,7 +38,7 @@ function createRow(i, item) {
     <td>${item.count}</td>
     <td>${item.category}</td>
     <td><button onclick = "updateData(${i})" id="update">Update</button></td>
-    <td><button onclick = "deleteItem(${i})" id="delete">Delete</button></td>
+    <td><button class = "del" onclick = "deleteItem(${i})" id="delete">Delete</button></td>
   </tr>
   `;
   return row;
@@ -84,7 +84,7 @@ function clearData() {
   count.value = '';
   category.value = '';
   total.innerHTML = '';
-  total.style.backgroundColor = '#ff6600';
+  total.style.backgroundColor = '#ffaa00';
 }
 // show data (read)
 function showData() {
@@ -96,7 +96,7 @@ function showData() {
   let btnDeleteAll = document.getElementById('delete-all');
   if (products.length > 0) {
     btnDeleteAll.innerHTML = `
-      <button onclick = "deleteAll()">Delete All (${products.length})</button>
+      <button class = "del" onclick = "deleteAll()">Delete All (${products.length})</button>
     `;
   } else {
     btnDeleteAll.innerHTML = '';
@@ -178,7 +178,7 @@ function checkValidData() {
     +count.value < 0 ||
     +taxes.value < 0 ||
     +discount.value < 0 ||
-    +discount.value > price ||
+    +discount.value > +price.value ||
     +ads.value < 0
   ) {
     alert('Enter valid Data...!');
